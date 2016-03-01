@@ -1,8 +1,15 @@
 <resources>
+    <!--basico-->
     <string name="app_name">MathGame</string>
     <string name="action_settings">Settings</string>
-    <string name="Play">Playis</string>
-    <string name = "About">About</string>
-    <string name="instrucion">Instrucciones</string>
     <string name="title_activity_play_game">PlayGame</string>
+    <!--componentes del content_menu-->
+    <string name="btnJugar">J U G A R</string>
+    <string name="btnReglas">R E G L A S</string>
+    <string name="btnPuntuacion">P U N T U A C I O N</string>
+    <string name="btnDif">D I F I C U L T A D</string>
+    <string name="btnSalir">S A L I R</string>
+    <!--componentes del content_play_game-->
+    <string name="btnSaltar"> C A M B I A R  \n  O P E R A C I O N </string>
+    <string name="lblPuntuacion"> Puntos : 00000 </string>
 </resources>

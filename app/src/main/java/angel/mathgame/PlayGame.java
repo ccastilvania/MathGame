@@ -19,7 +19,7 @@ public class PlayGame extends AppCompatActivity {
     }
 
     public void onClick(){
-
+        //hola me nobre es luis
     }
 
 }

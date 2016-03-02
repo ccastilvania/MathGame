@@ -44,7 +44,7 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageButton"
+        android:id="@+id/imgbtno"
         android:layout_marginTop="70dp"
         android:src="@mipmap/error"
         android:layout_below="@+id/lblOpArt"
@@ -55,10 +55,10 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageButton2"
+        android:id="@+id/imgbtnS"
         android:src="@mipmap/si"
         android:background="#ffffff"
-        android:layout_alignTop="@+id/imageButton"
+        android:layout_alignTop="@+id/imgbtno"
         android:layout_toEndOf="@+id/btnSaltar" />
 
     <Button
@@ -66,7 +66,7 @@
         android:layout_height="wrap_content"
         android:text="@string/btnSaltar"
         android:id="@+id/btnSaltar"
-        android:layout_below="@+id/imageButton"
+        android:layout_below="@+id/imgbtno"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="52dp" />
 
@@ -78,6 +78,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="42dp"
         android:src="@mipmap/salir"
-        android:background="#080808" />
+        android:background="#080808"
+        android:onClick="regresar"/>
 
 </RelativeLayout>

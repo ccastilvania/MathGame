@@ -12,4 +12,19 @@
     <!--componentes del content_play_game-->
     <string name="btnSaltar"> C A M B I A R  \n  O P E R A C I O N </string>
     <string name="lblPuntuacion"> Puntos : 00000 </string>
+    <!--componentes del activity_niveles-->
+    <string name="btnNormal">" M O D O  \n\n  N O R M A L "</string>
+    <string name="btnDificil">" M O D O  \n\n  D I F I C I L "</string>
+    <!--componentes del activity_niveles-->
+    <string name="reg"> R E G L A S </string>
+    <string name="Racieto">- Por cada problema acertdo se concederan 4 segundos al reloj, 8 puntos en el nivel basico y 10 en el dificil.</string>
+    <string name="Rerror">- Por cada error se descontaran 10 segundos al reloj solo en el nivel dificil.</string>
+    <string name="Rsalto">- Por cada salto se descontaran 10 segundos al reloj en modo facil.En el nivel dificil seràn 15 segundos y 30 puntos del marcador.</string>
+    <string name="Rsalir">- Al abandonar el juego en modo dificil no se adquiern los puntos. En modo facil se conceden los puntos reunidos.</string>
+    <string name="Rtiempo">- El tiempo de juego son 2 minutos en modo dificil y 4 en facil.</string>
+    <string name="RnivelN">Niveles de dificultad: \n\n - Normal: suma,resta,multiplicacion,divicion y comparaciones de 1 o 2 digitos. \n - Dificil: nivel normal mas exponencial de 1 o 2 digitos. </string>
+    <!--componentes del activity_puntuaciones-->
+    <string name="titulo">P U N T U A C I O N E S</string>
+
+
 </resources>

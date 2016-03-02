@@ -20,7 +20,8 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="70dp"
         android:layout_alignStart="@+id/btnReglas"
-        android:layout_alignEnd="@+id/btnReglas" />
+        android:layout_alignEnd="@+id/btnReglas"
+        android:onClick="jugar"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -29,7 +30,8 @@
         android:id="@+id/btnReglas"
         android:layout_below="@+id/btnJugar"
         android:layout_alignStart="@+id/btnDif"
-        android:layout_alignEnd="@+id/btnDif" />
+        android:layout_alignEnd="@+id/btnDif"
+        android:onClick="reglas"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -37,7 +39,8 @@
         android:id="@+id/btnDif"
         android:text="@string/btnDif"
         android:layout_below="@+id/btnReglas"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="dificultad"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -45,7 +48,8 @@
         android:text="@string/btnPuntuacion"
         android:id="@+id/btnPuntuacion"
         android:layout_below="@+id/btnDif"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="puntuacion"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -54,6 +58,7 @@
         android:id="@+id/btnSalir"
         android:layout_below="@+id/btnPuntuacion"
         android:layout_alignStart="@+id/btnDif"
-        android:layout_alignEnd="@+id/btnDif" />
+        android:layout_alignEnd="@+id/btnDif"
+        android:onClick="salir"/>
 
 </RelativeLayout>

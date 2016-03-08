@@ -8,13 +8,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 
 public class Main extends AppCompatActivity {
 
     Button btnJ;
     Button btnR,btnP,btnN,btnS;
     Intent obj;
+    String nivel="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +28,7 @@ public class Main extends AppCompatActivity {
         btnP   = (Button)findViewById(R.id.btnPuntuacion);
         btnN   = (Button)findViewById(R.id.btnDif);
         btnS   = (Button)findViewById(R.id.btnSalir);
+        nivel  = "Facil";
     }
 
     public void jugar(View v){
@@ -45,6 +46,7 @@ public class Main extends AppCompatActivity {
     public void dificultad(View v){
         obj = new Intent(this,Niveles.class);
         startActivity(obj);
+
     }
     public void salir(View v){
         finish();

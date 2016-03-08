@@ -1,5 +1,6 @@
 package angel.mathgame;
 
+import clases.math;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ public class Niveles extends AppCompatActivity {
 
     Button F,D;
     Intent obj;
+    math objF;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,19 +20,16 @@ public class Niveles extends AppCompatActivity {
 
         F=(Button)findViewById(R.id.btnNormal);
         D=(Button)findViewById(R.id.btnDificil);
-    }
-
-    public void regresar(){
-        obj = new Intent(this,Main.class);
-        startActivity(obj);
+        objF = new math();
     }
 
     public void facil(View v){
-        regresar();
+        obj = new Intent(this,Main.class);
+        startActivity(obj);
     }
     public void dificil(View v){
-        regresar();
-        finish();
+        obj = new Intent(this,Main.class);
+        startActivity(obj);
     }
 
 }

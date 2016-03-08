@@ -1,9 +1,8 @@
 package angel.mathgame;
 
+import clases.math;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -13,9 +12,14 @@ import android.widget.TextView;
 
 public class PlayGame extends AppCompatActivity {
 
-    ImageButton si,no,salir;
+    ImageButton si,no;
     Button salto;
-    TextView op;
+    TextView op,lblpunt,modo;
+
+    math objm;
+    double puntos=0;
+    char aux;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +32,12 @@ public class PlayGame extends AppCompatActivity {
         no    =  (ImageButton)findViewById(R.id.imgbtno);
         salto = (Button)findViewById(R.id.btnSaltar);
         op    = (TextView)findViewById(R.id.lblOpArt);
+        modo    = (TextView)findViewById(R.id.lblmodo);
+        lblpunt    = (TextView)findViewById(R.id.lblPuntuacion);
+        objm = new math();
+        objm.setGenerar();
+        op.setText(objm.getCadena());
+        //modo.setText(" --- Nivel "+objm.getDificultad()+" --- ");
 
     }
 
@@ -36,5 +46,56 @@ public class PlayGame extends AppCompatActivity {
         startActivity(obj);
         finish();
     }
+
+    public void cambiarOP(View v){
+        if(objm.getDificultad().equals("D")){
+            puntos -= 30;
+            lblpunt.setText("Puntuacion = " + puntos);
+        }
+        objm.setGenerar();
+        op.setText(objm.getCadena());
+    }
+
+    public void verificarSi(View v){
+        aux = 'T';
+        if(objm.getD()=='T' && aux=='T'){
+            sumar();
+            cambiarOP(v);
+        }else if(objm.getD()=='F' && aux=='T'){
+            restar();
+            cambiarOP(v);
+        }
+
+    }
+    public void verificarNo(View v){
+        aux='F';
+
+        if(objm.getD()=='F' && aux =='F') {
+            sumar();
+            cambiarOP(v);
+        }else if(objm.getD()=='T' && aux=='F'){
+            restar();
+            cambiarOP(v);
+        }
+
+    }
+    private void sumar(){
+        if(objm.getDificultad().equals("D")) {
+            puntos += 10;
+        }else if(objm.getDificultad().equals("F")){
+            puntos += 8;
+        }
+        lblpunt.setText("Puntuacion = " + puntos);
+
+    }
+    private void restar(){
+        if(objm.getDificultad().equals("D")) {
+            //descontar 10 segundos
+        }else if(objm.getDificultad().equals("F")){
+            puntos -= 8;
+        }
+        lblpunt.setText("Puntuacion = " + puntos);
+    }
+
 
 }

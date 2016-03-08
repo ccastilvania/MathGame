@@ -11,7 +11,7 @@
     <string name="btnSalir">S A L I R</string>
     <!--componentes del content_play_game-->
     <string name="btnSaltar"> C A M B I A R  \n  O P E R A C I O N </string>
-    <string name="lblPuntuacion"> Puntos : 00000 </string>
+    <string name="lblPuntuacion"> Puntos = 00000 </string>
     <!--componentes del activity_niveles-->
     <string name="btnNormal">" M O D O  \n\n  N O R M A L "</string>
     <string name="btnDificil">" M O D O  \n\n  D I F I C I L "</string>

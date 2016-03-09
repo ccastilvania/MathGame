@@ -41,6 +41,7 @@ public class Main extends AppCompatActivity {
     }
     public void puntuacion(View v){
         obj = new Intent(this,Puntuaciones.class);
+        obj.putExtra("puntos","si");
         startActivity(obj);
     }
     public void dificultad(View v){

@@ -8,6 +8,7 @@ public class math {
     double n1=0,n2=0,res=0;
     private String comp = null,operacion=null,cadena=null,auxDes=null;
     private char D;
+    private String tiempo="02:00";
     private String dif ="F";
     final String[] op = {"+", "-", "*", "/","^"};
     final String[] num = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
@@ -23,6 +24,9 @@ public class math {
     // SET
     public void setGenerar(){
         generarOP();
+    }
+    public void setTiempo(String t){
+        tiempo = t;
     }
     public void setDificultad( String dif){
         this.dif = dif;
@@ -40,6 +44,10 @@ public class math {
     public String getDificultad(){
         return dif;
     }
+    public String getTiempo(){
+        return tiempo;
+    }
+
 
 
     // Metodos de las operaciones

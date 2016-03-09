@@ -13,7 +13,9 @@
     <Chronometer
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:format="%s"
         android:id="@+id/cronometro"
+        android:textSize="20sp"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
 
@@ -26,7 +28,7 @@
         android:textColor="#fb020a"
         android:enabled="false"
         android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/imgBtnSalir" />
+        android:layout_toEndOf="@+id/lblmodo" />
 
     <TextView
         android:layout_width="match_parent"
@@ -44,13 +46,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imgbtno"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="74dp"
         android:src="@mipmap/error"
-        android:layout_below="@+id/lblOpArt"
-        android:layout_toEndOf="@+id/cronometro"
-        android:layout_marginStart="44dp"
         android:background="#ffffff"
-        android:onClick="verificarNo"/>
+        android:onClick="verificarNo"
+        android:layout_below="@+id/lblOpArt"
+        android:layout_toEndOf="@+id/cronometro" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -58,9 +59,9 @@
         android:id="@+id/imgbtnS"
         android:src="@mipmap/si"
         android:background="#ffffff"
-        android:layout_alignTop="@+id/imgbtno"
-        android:layout_toEndOf="@+id/btnSaltar"
-        android:onClick="verificarSi"/>
+        android:onClick="verificarSi"
+        android:layout_alignTop="@+id/lblmodo"
+        android:layout_toEndOf="@+id/lblPuntuacion" />
 
     <Button
         android:layout_width="wrap_content"

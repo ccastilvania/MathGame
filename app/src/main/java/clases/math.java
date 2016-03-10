@@ -1,5 +1,7 @@
 package clases;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Random;
 
 public class math {
@@ -35,8 +37,10 @@ public class math {
     public String getCadena(){
         return cadena;
     }
-    public double getRes(){
-        return res;
+    public BigDecimal getRes(){
+        BigDecimal big = new BigDecimal(res);
+        big = big.setScale(2, RoundingMode.HALF_UP);
+        return big;
     }
     public char getD(){
         return  D;
@@ -52,19 +56,41 @@ public class math {
 
     // Metodos de las operaciones
     private void sumar(double n1,double n2){
-        res = n1+n2;
+       try {
+           res = n1+n2;
+       }catch (Exception ex){
+           res = 0.00;
+       }
+
     }
     private void restar(double n1,double n2){
-        res = n1-n2;
+        try {
+            res = n1-n2;
+        }catch (Exception ex){
+            res = 0.00;
+        }
     }
     private void multiplicar(double n1,double n2){
-        res = n1*n2;
+        try {
+            res = n1*n2;
+        }catch (Exception ex){
+            res = 0.00;
+        }
     }
     private void dividir(double n1,double n2){
-        res = n1/n2;
+        try {
+            res = n1/n2;
+        }catch (Exception ex){
+            res = 0.00;
+        }
     }
     private void potencia(double n1,double n2){
-        res = Math.pow(n1,n2);
+        try {
+            res = Math.pow(n1,n2);
+        }catch (Exception ex){
+            res = 0.00;
+        }
+
     }
     private void comparaciones(double n1, double n2){
         if(n1 > n2){
@@ -78,45 +104,56 @@ public class math {
 
     // Genera la operacion de manera aleatoria y la resuelve
     private void generarOP(){
+        try {
+            Random random = new Random();
 
-        Random random = new Random();
+            int numero1 = random.nextInt(num.length);
+            int signo = random.nextInt(op.length);
+            int numero2 = random.nextInt(num.length);
+            int des = random.nextInt(aux.length);
 
-        int numero1 = random.nextInt(num.length);
-        int signo   = random.nextInt(op.length);
-        int numero2 = random.nextInt(num.length);
-        int des     = random.nextInt(aux.length);
+            n1 = Double.parseDouble(num[numero1]);
+            n2 = Double.parseDouble(num[numero2]);
+            operacion = op[signo];
+            auxDes = aux[des];
 
-        n1 = Double.parseDouble(num[numero1]);
-        n2 = Double.parseDouble(num[numero2]);
-        operacion = op[signo];
-        auxDes = aux[des];
+            switch (operacion) {
+                case "+":
+                    sumar(n1, n2);
+                    break;
+                case "-":
+                    restar(n1, n2);
+                    break;
+                case "*":
+                    multiplicar(n1, n2);
+                    break;
+                case "^":
+                    potencia(n1, n2);
+                    break;
+                case "/":
+                    dividir(n1, n2);
+                    break;
+                default:
+                    break;
+            }
 
-        switch (operacion){
-            case "+":
-                sumar(n1,n2);
-                break;
-            case "-":
-                restar(n1, n2);
-                break;
-            case "*":
-                multiplicar(n1, n2);
-                break;
-            case "^":
-                potencia(n1,n2);
-                break;
-            case "/":
-                dividir(n1,n2);
-                break;
-            default:
-                break;
-        }
+            if (auxDes.equals("s")) {
+                cadena = n1 + op[signo] + n2 + "=" + getRes();
+                D = 'T';
+            } else {
+                D = 'F';
+                BigDecimal big;
+                try {
+                    big = new BigDecimal((Math.random()* 200 + 1));
+                    big = big.setScale(2, RoundingMode.HALF_UP);
+                    cadena = n1 + op[signo] + n2 + "=" + big;
+                } catch (Exception ex) {
+                    cadena = n1 + op[signo] + n2 + "= 0.05";
+                }
 
-        if(auxDes.equals("s")){
-            cadena = n1+op[signo]+n2+"="+getRes();
-            D = 'T';
-        } else {
-            D = 'F';
-            cadena = n1+op[signo]+n2+"="+random.nextInt();
+            }
+        }catch (Exception ex){
+            generarOP();
         }
     }
 }

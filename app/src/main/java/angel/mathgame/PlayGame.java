@@ -1,7 +1,10 @@
 package angel.mathgame;
 
 import clases.math;
+
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
@@ -13,17 +16,19 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class PlayGame extends AppCompatActivity implements Chronometer.OnChronometerTickListener{
+public class PlayGame extends AppCompatActivity implements View.OnClickListener, Chronometer.OnChronometerTickListener {
 
     ImageButton si,no;
     Button salto;
     TextView op,lblpunt,modo;
-    private Chronometer cronometro;
+    Chronometer cronometro;
 
     math objm;
-    double puntos=0;
+    double puntos = 0;
+    long tiempoPausado = 0;
     char aux;
-
+    String auxCrono;
+    Boolean isPause = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,15 +38,20 @@ public class PlayGame extends AppCompatActivity implements Chronometer.OnChronom
         setSupportActionBar(toolbar);
 
         si    =  (ImageButton)findViewById(R.id.imgbtnS);
+        si.setOnClickListener(this);
         no    =  (ImageButton)findViewById(R.id.imgbtno);
+        no.setOnClickListener(this);
         salto = (Button)findViewById(R.id.btnSaltar);
+        salto.setOnClickListener(this);
+
         op    = (TextView)findViewById(R.id.lblOpArt);
         modo    = (TextView)findViewById(R.id.lblmodo);
         lblpunt    = (TextView)findViewById(R.id.lblPuntuacion);
-
         cronometro = (Chronometer)findViewById(R.id.cronometro);
         cronometro.setOnChronometerTickListener(this);
         cronometro.start();
+        tiempoPausado = 0;
+        isPause= false;
 
         objm = new math();
         objm.setGenerar();
@@ -52,9 +62,50 @@ public class PlayGame extends AppCompatActivity implements Chronometer.OnChronom
         salto.setEnabled(true);
 
     }
+    @Override
+    public void onClick(View v) {
+
+        switch (v.getId()) {
+            case R.id.imgbtnS:
+                aux = 'T';
+                if(objm.getD()=='T' && aux=='T'){
+                    sumar();
+                    cambiarOP();
+                }else if(objm.getD()=='F' && aux=='T'){
+                    restar();
+                    cambiarOP();
+                }
+                break;
+            case R.id.imgbtno:
+                aux='F';
+
+                if(objm.getD()=='F' && aux =='F') {
+                    sumar();
+                    cambiarOP();
+                }else if(objm.getD()=='T' && aux=='F'){
+                    restar();
+                    cambiarOP();
+                }
+                break;
+            case R.id.btnSaltar:
+                if(objm.getDificultad().equals("D")){
+                    puntos -= 30;
+                    lblpunt.setText("Puntuacion = " + puntos);
+                }
+                objm.setGenerar();
+                op.setText(objm.getCadena());
+                break;
+
+            default:
+                break;
+        }
+    }
+    //
     //checa el tiempo en el que va
 
     public void onChronometerTick(Chronometer chronometer) {
+        MediaPlayer mp = MediaPlayer.create(this, R.raw.pum);
+
         if (objm.getTiempo().equals(chronometer.getText())) {
             Toast.makeText(PlayGame.this, "SE TERMINO EL TIEMPO . . . ",
                     Toast.LENGTH_SHORT).show();
@@ -62,9 +113,10 @@ public class PlayGame extends AppCompatActivity implements Chronometer.OnChronom
             si.setEnabled(false);
             no.setEnabled(false);
             salto.setEnabled(false);
-
+            mp.start();
         }
-        if("02:03".equals(chronometer.getText())){
+        if("02:09".equals(chronometer.getText())){
+            mp.stop();
             Intent obj = new Intent(this,Puntuaciones.class);
             startActivity(obj);
         }
@@ -76,7 +128,7 @@ public class PlayGame extends AppCompatActivity implements Chronometer.OnChronom
         finish();
     }
 
-    public void cambiarOP(View v){
+    public void cambiarOP(){
         if(objm.getDificultad().equals("D")){
             puntos -= 30;
             lblpunt.setText("Puntuacion = " + puntos);
@@ -89,10 +141,10 @@ public class PlayGame extends AppCompatActivity implements Chronometer.OnChronom
         aux = 'T';
         if(objm.getD()=='T' && aux=='T'){
             sumar();
-            cambiarOP(v);
+            cambiarOP();
         }else if(objm.getD()=='F' && aux=='T'){
             restar();
-            cambiarOP(v);
+            cambiarOP();
         }
 
     }
@@ -101,10 +153,10 @@ public class PlayGame extends AppCompatActivity implements Chronometer.OnChronom
 
         if(objm.getD()=='F' && aux =='F') {
             sumar();
-            cambiarOP(v);
+            cambiarOP();
         }else if(objm.getD()=='T' && aux=='F'){
             restar();
-            cambiarOP(v);
+            cambiarOP();
         }
 
     }
@@ -118,12 +170,40 @@ public class PlayGame extends AppCompatActivity implements Chronometer.OnChronom
 
     }
     private void restar(){
+        MediaPlayer mp = MediaPlayer.create(this, R.raw.error);
+        mp.start();
         if(objm.getDificultad().equals("D")) {
             //descontar 10 segundos
         }else if(objm.getDificultad().equals("F")){
             puntos -= 8;
         }
         lblpunt.setText("Puntuacion = " + puntos);
+    }
+
+    public void onStop(){
+        super.onStop();
+
+        tiempoPausado=cronometro.getBase() - SystemClock.elapsedRealtime();
+        cronometro.stop();
+        isPause = true;
+    }
+    public void onPause(){
+        super.onPause();
+
+        tiempoPausado=cronometro.getBase() - SystemClock.elapsedRealtime();
+        cronometro.stop();
+        isPause = true;
+
+
+    }
+    public void onResume(){
+        super.onResume();
+        if(isPause){
+            cronometro.setBase(SystemClock.elapsedRealtime() + tiempoPausado);
+            cronometro.start();
+            tiempoPausado = 0;
+            isPause = false;
+        }
     }
 
 

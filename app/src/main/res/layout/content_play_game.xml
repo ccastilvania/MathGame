@@ -16,8 +16,8 @@
         android:format="%s"
         android:id="@+id/cronometro"
         android:textSize="20sp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/lblmodo"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -28,7 +28,8 @@
         android:textColor="#fb020a"
         android:enabled="false"
         android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/lblmodo" />
+        android:layout_alignEnd="@+id/btnSaltar"
+        android:layout_toEndOf="@+id/imgbtno" />
 
     <TextView
         android:layout_width="match_parent"
@@ -40,18 +41,19 @@
         android:layout_marginTop="70dp"
         android:background="#fefbfb"
         android:textAlignment="center"
-        android:enabled="false" />
+        android:enabled="false"
+        android:textColor="#3a9208"
+        android:textStyle="bold" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imgbtno"
-        android:layout_marginTop="74dp"
+        android:layout_marginTop="79dp"
         android:src="@mipmap/error"
         android:background="#ffffff"
-        android:onClick="verificarNo"
         android:layout_below="@+id/lblOpArt"
-        android:layout_toEndOf="@+id/cronometro" />
+        android:layout_alignParentStart="true" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -59,9 +61,8 @@
         android:id="@+id/imgbtnS"
         android:src="@mipmap/si"
         android:background="#ffffff"
-        android:onClick="verificarSi"
-        android:layout_alignTop="@+id/lblmodo"
-        android:layout_toEndOf="@+id/lblPuntuacion" />
+        android:layout_above="@+id/btnSaltar"
+        android:layout_alignEnd="@+id/lblOpArt" />
 
     <Button
         android:layout_width="wrap_content"
@@ -70,8 +71,7 @@
         android:id="@+id/btnSaltar"
         android:layout_below="@+id/imgbtno"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="52dp"
-        android:onClick="cambiarOP"/>
+        android:layout_marginTop="52dp"/>
 
     <ImageButton
         android:layout_width="wrap_content"
